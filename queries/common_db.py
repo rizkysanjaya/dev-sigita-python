@@ -36,7 +36,7 @@ def selectAllData(table, condition=None):
         return jsonify(response_data), 200
     except (Exception, psycopg2.DatabaseError) as error:
         # Create a custom error message
-        error_message = {"Oops, there's an error.. ": str(error)}
+        error_message = {"Oops, terdapat kesalahan.. ": str(error)}
         return jsonify(error_message), 500
 
 # reusable delete data function
@@ -49,5 +49,5 @@ def deleteData(table, id):
         return jsonify(response_data), 200
     except (Exception, psycopg2.DatabaseError) as error:
         # Create a custom error message
-        error_message = {"Oops, there's an error.. ": str(error)}
+        error_message = {"Oops, terdapat kesalahan.. ": str(error)}
         return jsonify(error_message), 500
