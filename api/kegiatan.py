@@ -39,36 +39,49 @@ def createKegiatan():
         return jsonify(error_message), 500
 
 # ASSIGN KEGIATAN
-@kegiatan.route('/api/kegiatan/assign', methods=['POST'])
+@kegiatan.route('/api/kegiatan/new', methods=['POST'])
 def assignKegiatan():
+    # def insert_complex_data(data):
     try:
-        jsonObject = request.json
+        nama_kegiatan = request.form.get('nama_kegiatan')
+        tanggal = request.form.get('tanggal')
+        tanggal_selesai = request.form.get('tanggal_selesai')
+        jam_mulai = request.form.get('jam_mulai')
+        jam_selesai = request.form.get('jam_selesai')
+        zona_waktu = request.form.get('zona_waktu')
+        tempat = request.form.get('tempat')
+        status = request.form.get('status')
+        is_draft = request.form.get('is_draft')
 
-        # Extract values from the JSON object
-        nama_kegiatan = jsonObject.get('nama_kegiatan')
-        tanggal = jsonObject.get('tanggal')
-        jam_mulai = jsonObject.get('jam_mulai')
-        jam_selesai = jsonObject.get('jam_selesai')
-        zona_waktu = jsonObject.get('zona_waktu')
-        tempat = jsonObject.get('tempat')
-        status = jsonObject.get('status')
-        is_draft = jsonObject.get('is_draft')
+        # Convert is_draft to an integer
+        is_draft = int(is_draft)
 
-        # Define columns and values for Table A (e.g., kegiatan)
-        columns1 = ['nama_kegiatan', 'tanggal', 'jam_mulai', 'zona_waktu']
-        values1 = [nama_kegiatan, tanggal, jam_mulai, zona_waktu]
+        # Assuming you have multiple users and protokoler in form-data
+        users = request.form.getlist('users[]')
+        protokoler = request.form.getlist('protokoler[]')
 
-        # Define columns and values for Table B (e.g., detail_kegiatan)
-        columns2 = ['kegiatan_id', 'jam_mulai', 'jam_selesai', 'tempat', 'status', 'is_draft']
-        values2 = [generated_id, jam_mulai, jam_selesai, tempat, status, is_draft]
+        # Assuming you have multiple files in form-data
+        files = request.files.getlist('files[]')
 
-        # Call the 'addKegiatan' function with the extracted 'values'
-        result, status_code = addKegiatan(values)
+        file_names = [file.filename for file in files if file]
 
-        # Return a response indicating success or failure
+        # # Save uploaded files to a directory on the server's file system
+        # saved_files = []
+        # for file in files:
+        #     if file:
+        #         filename = secure_filename(file.filename)
+        #         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        #         file.save(file_path)
+        #         saved_files.append(file_path)
+
+        # assign values to data
+        data = [nama_kegiatan, tanggal, tanggal_selesai, jam_mulai, jam_selesai, zona_waktu, tempat, status, is_draft, users, protokoler, file_names]
+
+        result, status_code = kegiatan_db.assignKegiatan(data)
+
         return result, status_code
+
     except (Exception, psycopg2.DatabaseError) as error:
-        # Create a custom error message
         error_message = {"Oops, terdapat kesalahan.. ": str(error)}
         return jsonify(error_message), 500
     

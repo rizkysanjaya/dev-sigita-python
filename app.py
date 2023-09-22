@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from api.auth import auth
 from api.kegiatan import kegiatan
+from api.user import user
 
 app = Flask(__name__, template_folder="templates")
 
@@ -14,7 +15,7 @@ app.config['SECRET_KEY'] = 'thisissecret'
 
 # Register the blueprints
 app.register_blueprint(kegiatan)
-# app.register_blueprint(user_api)
+app.register_blueprint(user)
 app.register_blueprint(auth)
 
 
