@@ -34,7 +34,7 @@ def login():
         if user != 401 or user != 500:
             payload = {
                 'nip': nip,
-                'exp': datetime.utcnow() + timedelta(minutes=30),
+                'exp': datetime.utcnow() + timedelta(minutes=300),
                 'iat': datetime.utcnow(),
                 'role' : user['role']
             }

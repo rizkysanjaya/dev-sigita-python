@@ -23,6 +23,8 @@ def token_required(required_roles):
         def decorated(*args, **kwargs):
             # token = None
             token = request.headers.get('Authorization')
+            if token is not None and token.startswith('Bearer '):
+                token = token.split(' ')[1]  # Remove "Bearer" keyword
             # if 'x-access-token' in request.headers:
             #     token = request.headers['x-access-token']
 

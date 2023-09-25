@@ -85,6 +85,40 @@ def assignKegiatan():
         error_message = {"Oops, terdapat kesalahan.. ": str(error)}
         return jsonify(error_message), 500
     
+@kegiatan.route('/api/kegiatan/edit/<int:id>', methods=['POST'])
+def editKegiatan(id):
+    try:
+        nama_kegiatan = request.form.get('nama_kegiatan')
+        tanggal = request.form.get('tanggal')
+        tanggal_selesai = request.form.get('tanggal_selesai')
+        jam_mulai = request.form.get('jam_mulai')
+        jam_selesai = request.form.get('jam_selesai')
+        zona_waktu = request.form.get('zona_waktu')
+        tempat = request.form.get('tempat')
+        status = request.form.get('status')
+        is_draft = request.form.get('is_draft')
+
+        # Convert is_draft to an integer
+        is_draft = int(is_draft)
+
+        # Assuming you have multiple users and protokoler in form-data
+        users = request.form.getlist('users[]')
+        protokoler = request.form.getlist('protokoler[]')
+
+        # Assuming you have multiple files in form-data
+        files = request.files.getlist('files[]')
+
+        file_names = [file.filename for file in files if file]
+
+        data = [nama_kegiatan, tanggal, tanggal_selesai, jam_mulai, jam_selesai, zona_waktu, tempat, status, is_draft, users, protokoler, file_names]
+
+        result, status_code = kegiatan_db.editKegiatan(data, id)
+        return result, status_code
+
+    except (Exception, psycopg2.DatabaseError) as error:
+        error_message = {"Oops, terdapat kesalahan.. ": str(error)}
+        return jsonify(error_message), 500
+    
 # UPDATE KEGIATAN by ID
 @kegiatan.route('/api/kegiatan/<int:id>', methods=['PUT'])
 def updateKegiatan(id):
@@ -169,6 +203,39 @@ def hapusKegiatan(id):
 @token_required([SUPER_ADMIN_ROLE, ADMIN_ROLE])
 def hapusLampiran(id):
     data = kegiatan_db.deleteLampiran(id)
+    if data != 200:
+        return data
+    else:
+        return jsonify({"message": "Kesalahan pada server."}), 500
+    
+
+# Update kehadiran
+@kegiatan.route('/api/kegiatan/kehadiran', methods=['POST'])
+def updateKehadiran():
+    jsonObject = request.json
+
+    id_kegiatan = jsonObject.get('id_kegiatan')
+    id_user = jsonObject.get('id_user')
+    keterangan = jsonObject.get('keterangan')
+    kehairan = jsonObject.get('kehairan')
+
+    values = [id_kegiatan, id_user, keterangan, kehairan]
+
+    data = kegiatan_db.updateHadir(values)
+    if data != 200:
+        return data
+    else:
+        return jsonify({"message": "Kesalahan pada server."}), 500
+    
+
+# Update status read kegiatan
+@kegiatan.route('/api/kegiatan/read', methods=['POST'])
+def isRead():
+    jsonObject = request.json
+    id = jsonObject.get('id_kegiatan')
+
+    data = kegiatan_db.updateStatusRead(id)
+
     if data != 200:
         return data
     else:
