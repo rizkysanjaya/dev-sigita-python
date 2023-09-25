@@ -13,7 +13,7 @@ def getAllUser():
     data = common_db.selectAllData('users')
     
     if data != 200:
-        return data  # Wrap the result in a JSON-friendly dictionary
+        return data  
     else:
         return jsonify({"message": "Kesalahan pada server."}), 500
 

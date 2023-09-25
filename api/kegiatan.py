@@ -65,14 +65,14 @@ def assignKegiatan():
 
         file_names = [file.filename for file in files if file]
 
-        # # Save uploaded files to a directory on the server's file system
-        # saved_files = []
-        # for file in files:
-        #     if file:
-        #         filename = secure_filename(file.filename)
-        #         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        #         file.save(file_path)
-        #         saved_files.append(file_path)
+        # Save uploaded files to a directory on the server's file system
+        saved_files = []
+        for file in files:
+            if file:
+                filename = secure_filename(file.filename)
+                file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                file.save(file_path)
+                saved_files.append(file_path)
 
         # assign values to data
         data = [nama_kegiatan, tanggal, tanggal_selesai, jam_mulai, jam_selesai, zona_waktu, tempat, status, is_draft, users, protokoler, file_names]
