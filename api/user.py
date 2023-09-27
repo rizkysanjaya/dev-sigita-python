@@ -3,7 +3,7 @@ from queries import user_db, common_db
 from queries.auth_db import token_required
 from flask import current_app as app
 from werkzeug.utils import secure_filename
-import os, time
+import os, time, psycopg2
 
 user = Blueprint('user', __name__)
 
