@@ -1,6 +1,4 @@
-# db connect config
-
-
+# from flask import current_app as app
 # server
 
 # db_params = {
@@ -22,6 +20,7 @@ db_params = {
 }
 
 # Define constants for roles
-SUPER_ADMIN_ROLE = 1
-ADMIN_ROLE = 2
-USER_ROLE = 3
+# SUPER_ADMIN_ROLE = 1
+# ADMIN_ROLE = 2
+# USER_ROLE = 3
+
