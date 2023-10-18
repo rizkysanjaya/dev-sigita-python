@@ -1,0 +1,2929 @@
+{
+	"info": {
+		"_postman_id": "3ad803b5-1301-49ef-a60b-b478b9beebdb",
+		"name": "RYA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29789442"
+	},
+	"item": [
+		{
+			"name": "KEGIATAN",
+			"item": [
+				{
+					"name": "Create Kegiatan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nama_kegiatan\": \"Ini juga test ajah ini mah\",\n    \"tanggal\": \"2021-08-01\",\n    \"jam_mulai\": \"09:00\",\n    \"jam_selesai\": \"12:00\",\n    \"zona_waktu\": \"WITA\",\n    \"tempat\": \"Aula Utama\",\n    \"status\": \"AKAN_DATANG\",\n    \"is_draft\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/api/kegiatan",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Kegiatan And Assign",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nama_kegiatan\": \"Ini juga test ajah ini mah\",\n    \"tanggal\": \"2021-08-01\",\n    \"jam_mulai\": \"09:00\",\n    \"jam_selesai\": \"12:00\",\n    \"zona_waktu\": \"WITA\",\n    \"tempat\": \"Aula Utama\",\n    \"status\": \"AKAN_DATANG\",\n    \"is_draft\": 1,\n    \"users\": [5, 8, 9],\n    \"protokoler\": [11, 13, 15]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/api/kegiatan/create-assign",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"create-assign"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Kegiatan Form",
+					"request": {
+						"auth": {
+							"type": "basic"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "multipart/form-data",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nama_kegiatan",
+									"value": "Kegiatan paling seru se pulau burung pipit",
+									"type": "text"
+								},
+								{
+									"key": "tanggal",
+									"value": "2023-08-12",
+									"type": "text"
+								},
+								{
+									"key": "jam_mulai",
+									"value": "03:17",
+									"type": "text"
+								},
+								{
+									"key": "jam_selesai",
+									"value": "03:25",
+									"type": "text"
+								},
+								{
+									"key": "zona_waktu",
+									"value": "WITA",
+									"type": "text"
+								},
+								{
+									"key": "tempat",
+									"value": "Outdoor",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "AKAN_DATANG",
+									"type": "text"
+								},
+								{
+									"key": "is_draft",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "files[]",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								},
+								{
+									"key": "files[]",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								},
+								{
+									"key": "users[]",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "users[]",
+									"value": "8",
+									"type": "text"
+								},
+								{
+									"key": "protokoler[]",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "is_ignore",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{server_url}}/api/kegiatan/new",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Kegiatan Form",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "multipart/form-data",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nama_kegiatan",
+									"value": "PERSIAPAN SIACC 2023",
+									"type": "text"
+								},
+								{
+									"key": "tanggal",
+									"value": "2023-08-14",
+									"type": "text"
+								},
+								{
+									"key": "jam_mulai",
+									"value": "09:00",
+									"type": "text"
+								},
+								{
+									"key": "jam_selesai",
+									"value": "15:00",
+									"type": "text"
+								},
+								{
+									"key": "zona_waktu",
+									"value": "WITA",
+									"type": "text"
+								},
+								{
+									"key": "tempat",
+									"value": "Online",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "AKAN_DATANG",
+									"type": "text"
+								},
+								{
+									"key": "is_draft",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "files[]",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "files[]",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "users[]",
+									"value": "8",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "users[]",
+									"value": "9",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "protokoler[]",
+									"value": "11",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "users[]",
+									"value": "34",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{server_url}}/api/kegiatan/edit/112",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"edit",
+								"112"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Batal Kegiatan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id_kegiatan\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/api/kegiatan/batal",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"batal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Kehadiran",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id_kegiatan\": 13,\n    \"id_user\": 3,\n    \"keterangan\": \"Sibuknya sekali banget\",\n    \"kehadiran\": \"DIWAKILKAN\" //HADIR, TIDAK_HADIR, MUNGKIN_HADIR, DIWAKILKAN\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/api/kegiatan/kehadiran",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"kehadiran"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Diwakilkan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id_kegiatan\": 81,\n    \"id_user_diwakilkan\": 5,\n    \"id_user_mewakili\": [4, 7]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/api/kegiatan/diwakilkan",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"diwakilkan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Read Status",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id_kegiatan\": 143\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/api/kegiatan/read",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"read"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Kegiatan",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"riwayat\": 0,\n    \"status\": \"AKAN_DATANG\" //\"SELESAI\", \"BATAL\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/api/kegiatan",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Kegiatan Draft",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server_url}}/api/kegiatan/draft",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"draft"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Detail Kegiatan",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server_url}}/api/kegiatan/13",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Kegiatan Per User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"riwayat\": 1,\n    \"status\": \"AKAN_DATANG\" //\"SELESAI\", \"BATAL\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/api/kegiatan-user/1",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan-user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Kegiatan Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server_url}}/api/kegiatan/dashboard/3",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"dashboard",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Kegiatan Current",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server_url}}/api/kegiatan-current/1",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan-current",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Kegiatan",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nama_kegiatan\": \"Test ajah ini mah\",\n    \"tanggal\": \"2021-08-01\",\n    \"jam_mulai\": \"09:00\",\n    \"jam_selesai\": \"12:00\",\n    \"zona_waktu\": \"WITA\",\n    \"tempat\": \"Aula Utama\",\n    \"status\": \"AKAN_DATANG\",\n    \"is_draft\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/api/kegiatan/2",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Kegiatan And Assign",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nama_kegiatan\": \"Test ajah ini mah\",\n    \"tanggal\": \"2021-08-01\",\n    \"jam_mulai\": \"09:00\",\n    \"jam_selesai\": \"12:00\",\n    \"zona_waktu\": \"WITA\",\n    \"tempat\": \"Aula Utama\",\n    \"status\": \"AKAN_DATANG\",\n    \"is_draft\": 0,\n    \"users\": [4, 6, 11],\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/api/kegiatan/update-assign/6",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"update-assign",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hapus Kegiatan",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server_url}}/api/kegiatan/3",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hapus Lampiran Kegiatan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server_url}}/api/lampiran-kegiatan/hapus/2",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"lampiran-kegiatan",
+								"hapus",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Kegiatan Bulk",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": [4, 11]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/api/kegiatan/assign-bulk/6",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"assign-bulk",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Kegiatan Single",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 4,\n    \"status_kehadiran\": null, \n    \"status_perwakilan\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/api/kegiatan/assign/1",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"assign",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "dodol",
+									"value": "Monyet",
+									"type": "text"
+								},
+								{
+									"key": "users[]",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "users[]",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/ruby/Downloads/2339-Article Text-7362-2-10-20201007.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{server_url}}/api/kegiatan/dodol",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"dodol"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Send Notif To NIP",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server_url}}/api/kegiatan/test-send-notif-to-nip/21111611",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"test-send-notif-to-nip",
+								"21111611"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Yandi 1\",\n    \"email\": \"rurirudi090@gmail.com\",\n    \"nip\": \"2121\",\n    \"role\": 1,\n    \"wa_number\": \"6281321508317\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/api/register",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Save access_token in a collection variable",
+									"var jsonData = pm.response.json();",
+									"var access_token = jsonData.data.token;",
+									"pm.collectionVariables.set(\"token\", access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nip\": \"4141\",\n    \"password\": \"Adhyaks4123?\",\n    \"platform\": \"WEB\", // WEB, ANDROID, IOS\n    \"time_zone\": \"WIB\" // WIB, WITA, WIT\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/api/login",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server_url}}/api/logout",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Role",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server_url}}/api/roles",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server_url}}/api/users",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Andamah\",\n    \"nip\": \"321786\",\n    \"email\": \"ban@mail.com\",\n    \"role\": 3,\n    \"wa_number\": \"16\",\n    \"status\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/api/users/30",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"30"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users Detail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server_url}}/api/users/30",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"30"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server_url}}/api/users/14",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Avatar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/ruby/Downloads/user.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{server_url}}/api/update-avatar/3",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"update-avatar",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"old_password\": \"694186\",\n    \"new_password\": \"Sakosoy123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/api/changepwd",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"changepwd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server_url}}/api/resetpwd/3",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"resetpwd",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update FCM Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fcm_token\": \"kljafjasdf;ljas;lfjsapdfh;lsafdj\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/api/fcm",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"fcm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Send Notif To Myself",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server_url}}/api/test-send-notif",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"test-send-notif"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AUTH local",
+			"item": [
+				{
+					"name": "Register ok",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Boba1\",\n    \"email\": \"boba1@gmail.com\",\n    \"nip\": \"7878781\",\n    \"role\": 1,\n    \"wa_number\": \"we 62895667766551\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/register",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login ok",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Save access_token in a collection variable",
+									"// var jsonData = pm.response.json();",
+									"// var access_token = jsonData.data.token;",
+									"// pm.collectionVariables.set(\"local_token\", access_token);",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nip\": \"909098\",\n    \"password\": \"password\",\n    \"platform\": \"WEB\", // WEB, ANDROID, IOS\n    \"time_zone\": \"WIB\" // WIB, WITA, WIT\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/login",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Roles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/api/roles",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users ok",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{local_token}}",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaXAiOiIxMTIyMzMiLCJleHAiOjE2OTUyMDE1OTcsImlhdCI6MTY5NTE5OTc5Nywicm9sZSI6Mn0.Kl6GLPFj0z9Z255IspuEhIqSPVj1FkoUZhYA3oAptQI",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/api/users",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users Detail ok",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/api/users/1",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users Update ok",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"ruby\",\n    \"nip\": \"11223344\",\n    \"email\": \"ruby@gmail.com\",\n    \"role\": 1,\n    \"wa_number\": \"1\",\n    \"status\": 1\n}\n    ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/users/4",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Delete ok",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/api/users/21",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"old_password\": \"Sakosoy123\",\n    \"new_password\": \"Sakosoy111\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/changepwd",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"changepwd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password ok",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/api/resetpwd/35",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"resetpwd",
+								"35"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Update Without Param ok",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 5,\n    \"name\": \"admin\",\n    \"nip\": \"12345678\",\n    \"email\": \"admin@gmail.com\",\n    \"role\": 2,\n    \"wa_number\": \"2\",\n    \"status\": 1\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/update-user",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"update-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Avatar ok",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/ruby/Downloads/40203a4c-cf58-4bdd-a46c-0afb5ef98e62.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local_url}}/api/update-avatar/4",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"update-avatar",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "KEGIATAN local",
+			"item": [
+				{
+					"name": "Create Kegiatan ok",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nama_kegiatan\": \"Test Post 4\",\n    \"tanggal\": \"2021-08-01\",\n    \"jam_mulai\": \"08:00\",\n    \"jam_selesai\": \"11:00\",\n    \"zona_waktu\": \"WIT\",\n    \"tempat\": \"Aula Utama\",\n    \"status\": \"AKAN_DATANG\",\n    \"is_draft\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/kegiatan",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Batal Kegiatan ok",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id_kegiatan\": 13\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/kegiatan/batal",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"batal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Kehadiran ok",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id_kegiatan\": 1,\n    \"id_user\": 6,\n    \"is_ignore\" : 0,\n    \"keterangan\": \"Malas mlas malassa amlamas\",\n    \"kehadiran\": \"TIDAK_HADIR\" //HADIR, TIDAK_HADIR, MUNGKIN_HADIR, DIWAKILKAN\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/kegiatan/kehadiran",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"kehadiran"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Read Status ok",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id_kegiatan\": 32\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/kegiatan/read",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"read"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Kegiatan And Assign ok",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{local_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nama_kegiatan\": \"test doang\",\n    \"tanggal\": \"2021-08-01\",\n    \"tanggal_selesai\" : \"2023-08-02\",\n    \"jam_mulai\": \"09:00\",\n    \"jam_selesai\": \"12:00\",\n    \"zona_waktu\": \"WITA\",\n    \"tempat\": \"Aula Utama\",\n    \"status\": \"AKAN_DATANG\",\n    \"is_draft\": 1,\n    \"users\": [26],\n    \"protokoler\": [11]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/kegiatan/create-assign",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"create-assign"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Kegiatan Form ok",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "multipart/form-data",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nama_kegiatan",
+									"value": "Gladi Bersih 6",
+									"type": "text"
+								},
+								{
+									"key": "tanggal",
+									"value": "2023-08-31",
+									"type": "text"
+								},
+								{
+									"key": "jam_mulai",
+									"value": "10:00",
+									"type": "text"
+								},
+								{
+									"key": "jam_selesai",
+									"value": "12:00",
+									"type": "text"
+								},
+								{
+									"key": "zona_waktu",
+									"value": "WITA",
+									"type": "text"
+								},
+								{
+									"key": "tempat",
+									"value": "Gedung Aulia",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "AKAN_DATANG",
+									"type": "text"
+								},
+								{
+									"key": "is_draft",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "files[]",
+									"type": "file",
+									"src": "/C:/Users/sanja/Downloads/bookapi.sql"
+								},
+								{
+									"key": "files[]",
+									"type": "file",
+									"src": "/C:/Users/sanja/Downloads/app.db"
+								},
+								{
+									"key": "users[]",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "users[]",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "users[]",
+									"value": "11",
+									"type": "text"
+								},
+								{
+									"key": "users[]",
+									"value": "15",
+									"type": "text"
+								},
+								{
+									"key": "protokoler[]",
+									"value": "14",
+									"type": "text"
+								},
+								{
+									"key": "is_ignore",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local_url}}/api/kegiatan/new",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Kegiatan Form ok",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "multipart/form-data",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nama_kegiatan",
+									"value": "Rapat dewan pembina saja",
+									"type": "text"
+								},
+								{
+									"key": "tanggal",
+									"value": "2023-08-08",
+									"type": "text"
+								},
+								{
+									"key": "jam_mulai",
+									"value": "09:00",
+									"type": "text"
+								},
+								{
+									"key": "jam_selesai",
+									"value": "12:00",
+									"type": "text"
+								},
+								{
+									"key": "zona_waktu",
+									"value": "WITA",
+									"type": "text"
+								},
+								{
+									"key": "tempat",
+									"value": "Gedung C",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "AKAN_DATANG",
+									"type": "text"
+								},
+								{
+									"key": "is_draft",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "files[]",
+									"type": "file",
+									"src": "/C:/Users/sanja/Downloads/main.min.js"
+								},
+								{
+									"key": "files[]",
+									"type": "file",
+									"src": "/C:/Users/sanja/Downloads/app.db"
+								},
+								{
+									"key": "users[]",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "users[]",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "protokoler[]",
+									"value": "11",
+									"type": "text"
+								},
+								{
+									"key": "protokoler[]",
+									"value": "14",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local_url}}/api/kegiatan/edit/29",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"edit",
+								"29"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Kegiatan ok",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/api/kegiatan",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan"
+							],
+							"query": [
+								{
+									"key": "riwayat",
+									"value": "0",
+									"description": "0 / 1",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "AKAN_DATANG",
+									"description": "\"SELESAI\", \"BATAL\", \"AKAN_DATANG\"",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Kegiatan Draft ok",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/api/kegiatan/draft",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"draft"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Detail Kegiatan ok",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/api/kegiatan/1",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Kegiatan Per User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"riwayat\": 0,\n    \"status\": \"AKAN_DATANG\" //\"SELESAI\", \"BATAL\", \"AKAN_DATANG\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/kegiatan-user/1",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan-user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Kegiatan Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/api/kegiatan/dashboard/1",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"dashboard",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Kegiatan Current",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/api/kegiatan-current/3",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan-current",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Kegiatan ok",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nama_kegiatan\": \"Tes update\",\n    \"tanggal\": \"2023-09-21\",\n    \"jam_mulai\": \"09:00\",\n    \"jam_selesai\": \"12:00\",\n    \"zona_waktu\": \"WIB\",\n    \"tempat\": \"Aula 2nd Floor\",\n    \"status\": \"SELESAI\",\n    \"is_draft\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/kegiatan/12",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Kegiatan And Assign ok",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nama_kegiatan\": \"Test ajah ini mah\",\n    \"tanggal\": \"2021-08-01\",\n    \"jam_mulai\": \"09:00\",\n    \"jam_selesai\": \"12:00\",\n    \"zona_waktu\": \"WITA\",\n    \"tempat\": \"Aula Utama\",\n    \"status\": \"AKAN_DATANG\",\n    \"is_draft\": 0,\n    \"users\": [4, 6, 11]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/kegiatan/update-assign/6",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"update-assign",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hapus Lampiran Kegiatan ok",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/api/lampiran-kegiatan/hapus/5",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"lampiran-kegiatan",
+								"hapus",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Selesai ok",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/api/kegiatan/selesai",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"selesai"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Belom",
+			"item": [
+				{
+					"name": "Test Send Notif To NIP",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/api/kegiatan/test-send-notif-to-nip/11223344",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"test-send-notif-to-nip",
+								"11223344"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Post Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "dodol",
+									"value": "hayu",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "users[]",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "users[]",
+									"value": "4",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/ruby/Downloads/collaborate.png",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local_url}}/api/kegiatan/dodol/2023-08-01/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"dodol",
+								"2023-08-01",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Send Notif To Myself",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/api/test-send-notif",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"test-send-notif"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update FCM Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fcm_token\": \"kljafjasdf;ljas;lfjsapdfh;lsafdj\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/fcm",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"fcm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/api/logout",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Kegiatan Single",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 4,\n    \"status_kehadiran\": null, \n    \"status_perwakilan\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/kegiatan/assign/1",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"assign",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Kegiatan Bulk",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": [4, 11]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/kegiatan/assign-bulk/6",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"assign-bulk",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Diwakilkan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{local_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id_kegiatan\": 32,\n    \"id_user_diwakilkan\": 10,\n    \"id_user_mewakili\": [22, 20]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/kegiatan/diwakilkan",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"diwakilkan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Remainder",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/api/kegiatan/test",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hapus Kegiatan no",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{local_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/api/kegiatan/19",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"kegiatan",
+								"19"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "server_url",
+			"value": "https://api.sigita.info",
+			"type": "string"
+		},
+		{
+			"key": "local_url",
+			"value": "localhost:5000",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "local_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
