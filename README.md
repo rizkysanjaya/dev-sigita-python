@@ -16,13 +16,10 @@ python app.py
 
 ## Database import
 
-create new databse 'dev_sigita'
-Execute SQL file 'public,sql' in the database
+- create new databse 'dev_sigita'
+- Execute SQL file 'public.sql' in the database
 
 ## API test (local)
 
-Import postman collection from 'RYA.postman_collection.json'
-
-```
-
-```
+- Import postman collection from 'RYA.postman_collection.json'
+- Login/Register to get token and test other APIs
