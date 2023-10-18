@@ -10,7 +10,7 @@ kegiatan = Blueprint('kegiatan', __name__)
 # CREATE KEAGIATAN
 @kegiatan.route('/api/kegiatan', methods=['POST'])
 @token_required
-def createKegiatan(current_user):
+def createKegiatan():
     try:
 
         jsonObject = request.json
@@ -211,6 +211,17 @@ def getDraftKegiatan():
     else:
         return jsonify({"message": "Kesalahan pada server."}), 500
 
+# Select riwayat kegiatan
+@kegiatan.route('/api/kegiatan/selesai', methods=['GET'])
+@token_required
+def selectRiwayat():
+    data = common_db.selectAllData('kegiatan', 'status = \'SELESAI\'')
+
+    if data != 200:
+        return data
+    else:
+        return jsonify({"message": "Kesalahan pada server."}), 500
+
 # GET KEGIATAN by ID
 @kegiatan.route('/api/kegiatan/<int:id>', methods=['GET'])
 @token_required
@@ -222,7 +233,19 @@ def getDetailKegiatan(id):
     else:
         return jsonify({"message": "Kesalahan pada server."}), 500
     
+# get kegiatan per user
+@kegiatan.route('/api/kegiatan-user/<int:id>', methods=['GET'])
+@token_required
+def getKegiatanUser(id):
+    jsonObject = request.json
+    status = jsonObject.get('status')
+    data = kegiatan_db.getKegiatanUser(id, status)
 
+    if data != 200:
+        return data
+    else:
+        return jsonify({"message": "Kesalahan pada server."}), 500
+    
 # CANCEL KEGIATAN (SET STATUS TO BATAL)
 @kegiatan.route('/api/kegiatan/batal', methods=['POST'])
 @token_required
@@ -260,20 +283,30 @@ def hapusLampiran(id):
 @kegiatan.route('/api/kegiatan/kehadiran', methods=['POST'])
 @token_required
 def updateKehadiran():
-    jsonObject = request.json
+    try:
+        jsonObject = request.json
 
-    id_kegiatan = jsonObject.get('id_kegiatan')
-    id_user = jsonObject.get('id_user')
-    keterangan = jsonObject.get('keterangan')
-    kehairan = jsonObject.get('kehairan')
+        id_kegiatan = jsonObject.get('id_kegiatan')
+        id_user = jsonObject.get('id_user')
+        is_ignore = jsonObject.get('is_ignore')
+        keterangan = jsonObject.get('keterangan')
+        kehadiran = jsonObject.get('kehadiran')
 
-    values = [id_kegiatan, id_user, keterangan, kehairan]
+        # check if not represented then set reason to null
+        if kehadiran != 'TIDAK_HADIR':
+            keterangan = None
 
-    data = kegiatan_db.updateHadir(values)
-    if data != 200:
-        return data
-    else:
-        return jsonify({"message": "Kesalahan pada server."}), 500
+        values = [keterangan, is_ignore, kehadiran, id_kegiatan, id_user]
+
+        data = kegiatan_db.updateHadir(values)
+        if data != 200:
+            return data
+        else:
+            return jsonify({"message": "Kesalahan pada server."}), 500
+    except (Exception, psycopg2.DatabaseError) as error:
+        # Create a custom error message
+        error_message = {"Oops, terdapat kesalahan.. ": str(error)}
+        return jsonify(error_message), 500
     
 
 # Update status read kegiatan
@@ -290,6 +323,8 @@ def isRead():
     else:
         return jsonify({"message": "Kesalahan pada server."}), 500
     
+
+
 
 # ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'docx', 'doc', 'xlsx', 'xls', 'pptx', 'ppt', 'zip', 'rar'])
 # def allowed_file(filename):

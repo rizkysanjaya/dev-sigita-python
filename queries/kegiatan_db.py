@@ -64,15 +64,15 @@ def assignKegiatan(data):
         conn.commit()
         # Insert data into the related table (user_kegiatan) using a loop
         user_kegiatan_sql = """
-            INSERT INTO user_kegiatan (id_kegiatan, id_user, is_protokoler)
+            INSERT INTO user_kegiatan (id_kegiatan, id_user, is_protokoler, is_read, is_ignore)
             VALUES (%s, %s, %s);
         """
         for user_id in users:
-            cur.execute(user_kegiatan_sql, (kegiatan_id, user_id, 1))  # Set is_protokoler to 0
+            cur.execute(user_kegiatan_sql, (kegiatan_id, user_id, 1, 0, 0))  # Set is_protokoler to 0
 
         # Insert data into the related table (user_kegiatan) for protokoler users
         for protokoler_id in protokoler:
-            cur.execute(user_kegiatan_sql, (kegiatan_id, protokoler_id, 0))  # Set is_protokoler to 1
+            cur.execute(user_kegiatan_sql, (kegiatan_id, protokoler_id, 0, 0, 0))  # Set is_protokoler to 1
 
         # Insert data into the related table (lampiran) using a loop
         lampiran_sql = """
@@ -333,15 +333,13 @@ def updateStatusRead(id):
     
 def updateHadir(data):
     try:
-        id_kegiatan, id_user, keterangan, kehadiran = data
+        keterangan, is_ignore, kehadiran, id_kegiatan, id_user = data
 
         # Update the record in the database
-        user_sql = """
-            UPDATE user_kegiatan
-            SET reason=%s, status_kehadiran=%s
-            WHERE id_kegiatan=%s AND id_user=%s 
-        """
-        user_data = (keterangan, kehadiran, id_kegiatan, id_user)
+        user_sql = """ UPDATE user_kegiatan SET reason=%s, is_ignore=%s, status_kehadiran=%s WHERE id_kegiatan=%s AND id_user=%s """
+        user_data = (keterangan, is_ignore, kehadiran, id_kegiatan, id_user)
+        # logging.debug(f"Executing SQL: {user_sql}, Data: {user_data}")
+        current_app.logger.info(f"Executing SQL: {user_sql}, Data: {user_data}")
         cur.execute(user_sql, user_data)
         conn.commit()
         return jsonify({"message": "Data kehadiran berhasil diupdate!"}), 200
@@ -352,3 +350,46 @@ def updateHadir(data):
         print("Database Error:", error_message)
         return jsonify({"message": "Data kehadiran gagal diupdate!", "Error Message": error_message}), 500
 
+# get kegiatan per user id
+def getKegiatanUser(id, status):
+    try:
+        # Establish a database connection and create a cursor
+         
+        # Define the SQL query to select events for a specific user with a given status
+        query = """
+            SELECT K.ID,
+                K.nama_kegiatan,
+                K.tanggal,
+                K.jam_mulai,
+                K.jam_selesai,
+                K.zona_waktu,
+                K.tempat,
+                K.status,
+                K.is_draft,
+                K.tanggal_selesai 
+            FROM
+                kegiatan
+                K INNER JOIN user_kegiatan uk ON K.ID = uk.id_kegiatan 
+            WHERE
+                uk.id_user = %s 
+                AND K.status = %s
+        """
+
+        # Execute the query with user_id and event_status as parameters
+        cur.execute(query, (id, status))
+        rows = cur.fetchall()
+
+        for row in rows:
+                row['jam_mulai'] = row['jam_mulai'].strftime("%H:%M")
+                row['jam_selesai'] = row['jam_selesai'].strftime("%H:%M")
+        # Check if any events were found
+        if not rows:
+            return jsonify({"message": "No events found for the user with the given status."}), 404
+
+        # Create a response JSON with event data
+        response_data = {"data": rows}
+        return jsonify(response_data), 200
+
+    except (Exception, psycopg2.DatabaseError) as error:
+        # Handle database errors or other exceptions
+        return jsonify({"message": f"Error: {str(error)}"}), 500

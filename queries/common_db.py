@@ -42,6 +42,8 @@ def selectAllData(table, condition=None):
             for row in rows:
                 row['jam_mulai'] = row['jam_mulai'].strftime("%H:%M")
                 row['jam_selesai'] = row['jam_selesai'].strftime("%H:%M")
+                # format tanggal ke 'Hari, DD-MM-YYYY'
+                row['tanggal'] = row['tanggal'].strftime("%A, %d-%m-%Y")
 
         # Membuat respons JSON dengan daftar rekaman
         response_data = {"data": rows}

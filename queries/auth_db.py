@@ -51,7 +51,7 @@ def token_required(f):
             return jsonify({'message': 'Error dalam decoding token', 'error': str(e)}), 401
 
         # Teruskan current_user sebagai argumen ke fungsi yang diberi dekorasi
-        return f(current_user, *args, **kwargs)
+        return f( *args, **kwargs)
 
     return decorated
 

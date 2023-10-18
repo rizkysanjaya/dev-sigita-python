@@ -54,11 +54,11 @@ def updateUser(id):
 # User update without parameter
 @user.route('/api/update-user', methods=['POST'])
 @token_required
-def updateUserNoParam(current_user):
+def updateUserNoParam():
     try:
-        app.logger.debug(f'Current user role: {current_user.get("role")}')
+        # app.logger.debug(f'Current user role: {current_user.get("role")}')
 
-        user_role = current_user.get('role')
+        # user_role = current_user.get('role')
 
         jsonObject = request.json
 
