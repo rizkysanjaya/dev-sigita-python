@@ -19,7 +19,7 @@ python app.py
 create new databse 'dev_sigita'
 Execute SQL file 'public,sql' in the database
 
-## API test
+## API test (local)
 
 Import postman collection from 'RYA.postman_collection.json'
 
